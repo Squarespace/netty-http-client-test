@@ -1,0 +1,59 @@
+task wrapper(type: Wrapper) {
+  gradleVersion = '2.3'
+}
+
+allprojects {
+  apply plugin: 'java'
+  apply plugin: 'maven'
+  apply plugin: 'signing'
+  apply plugin: 'eclipse'
+  apply plugin: 'idea'
+  
+  // UTF-8 should be standard by now. So use it!
+  [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+  
+  sourceCompatibility = 1.8
+  targetCompatibility = 1.8
+  
+  group = 'com.squarespace.netty'
+  
+  repositories {
+    mavenCentral()
+    mavenLocal()
+  }
+  
+  configurations {
+    provided
+  }
+  
+  // Telling Eclipse about the provided scope
+  eclipse.classpath.plusConfigurations += [configurations.provided]
+
+  sourceSets {
+    main { 
+      compileClasspath += [configurations.provided]
+    }
+    
+    test { 
+      compileClasspath += [configurations.provided]
+      runtimeClasspath += [configurations.provided]
+    }
+    
+    // Telling IDEA about the provided scope
+    idea {
+      module {
+        scopes.PROVIDED.plus += [configurations.provided]
+      }
+    }
+  }
+}
+
+dependencies {
+  testCompile 'org.slf4j:slf4j-api:1.7.12'
+  testRuntime 'org.slf4j:slf4j-simple:1.7.12'
+  
+  testCompile 'io.netty:netty-all:4.1.0.Beta5-SNAPSHOT'
+  testCompile 'org.eclipse.jetty:jetty-server:9.2.9.v20150224'
+  testCompile 'junit:junit:4.12'
+}
+
