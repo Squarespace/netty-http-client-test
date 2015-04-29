@@ -22,7 +22,7 @@ allprojects {
     mavenLocal()
     
     maven {
-      url 'http://clinker.netty.io/nexus/content/repositories/snapshots/io/netty/'
+      url 'http://clinker.netty.io/nexus/content/repositories/snapshots'
     }
   }
   
