@@ -20,6 +20,10 @@ allprojects {
   repositories {
     mavenCentral()
     mavenLocal()
+    
+    maven {
+      url 'http://clinker.netty.io/nexus/content/repositories/snapshots/io/netty/'
+    }
   }
   
   configurations {
