@@ -1,4 +1,4 @@
-# Init
+### Init
 
 ```
 [main] DEBUG io.netty.channel.MultithreadEventLoopGroup - -Dio.netty.eventLoopThreads: 24
@@ -22,7 +22,7 @@
 [main] DEBUG io.netty.util.Recycler - -Dio.netty.recycler.maxCapacity: 262144
 ```
 
-# 1st request
+### 1st request (success)
 
 ```
 [main] TRACE com.squarespace.netty.NettyHttpClient - Sending Request: /jetty-netty-test-0 to [id: 0x16538249, /127.0.0.1:47837 => /127.0.0.1:8080]
@@ -31,7 +31,7 @@
 [epollEventLoopGroup-2-1] TRACE com.squarespace.netty.NettyHttpClient - Received Response: ChannelHandlerContext(NettyHttpClient$HttpHandler#0, [id: 0x16538249, /127.0.0.1:47837 => /127.0.0.1:8080])
 ```
 
-# Nth request
+### Nth request (failure)
 
 ```
 [main] TRACE com.squarespace.netty.NettyHttpClient - Sending Request: /jetty-netty-test-1 to [id: 0x77e01dea, /127.0.0.1:47838 => /127.0.0.1:8080]
@@ -40,7 +40,7 @@
 [epollEventLoopGroup-2-2] ERROR com.squarespace.netty.NettyHttpClient - Connection closed without response: ChannelHandlerContext(NettyHttpClient$HttpHandler#0, [id: 0x77e01dea, /127.0.0.1:47838 :> /127.0.0.1:8080])
 ```
 
-# Ignore
+### Ignore
 
 ```
 [Thread-0] TRACE com.squarespace.netty.NettyHttpClient - ServerSocket: Socket closed
