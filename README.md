@@ -1,3 +1,34 @@
+
+Context:
+
+There appears to be a race condition in Netty 4.1.0-Beta w/ Epoll on Linux and this is a repro of it. 
+
+* Client: Netty 4.1.0-Beta5-SNAPSHOT
+* Server: Plain Java ServerSocket and Jetty (you can pick)
+
+For each request a new connection is being created, the server responds and closes the connection.
+
+Expected: The client consumes the response and closes the connection.
+
+Actual: Every other connection gets closed before it consumes the response. Wireshark shows the response on the wire.
+
+Steps to reproduce:
+
+1. Clone this repository
+2. ./run.sh
+
+```
+$ java -version
+java version "1.8.0_40"
+Java(TM) SE Runtime Environment (build 1.8.0_40-b25)
+Java HotSpot(TM) 64-Bit Server VM (build 25.40-b25, mixed mode)
+```
+
+```
+$ uname -a
+Linux xxxxx 3.19.3-1-ARCH #1 SMP PREEMPT Thu Mar 26 14:56:16 CET 2015 x86_64 GNU/Linux
+```
+
 ### Init
 
 ```
